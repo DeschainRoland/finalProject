@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Конец пути</string>
+    <string name="main_activity_name">Конец пути</string>
+    <string name="text_dialog_window">Вы уверены, что хотите выйти?</string>
+    <string name="dialog_yes_button">Да</string>
+    <string name="dialog_no_button">Нет</string>
+    <string name="leverListHead">Выберите уровень</string>
+    <string name="play_button_head">Играть</string>
+    <string name="exit_button_head">Выход</string>
+    <string name="head_dialog_death">Вы умерли...Продолжить?</string>
+</resources>

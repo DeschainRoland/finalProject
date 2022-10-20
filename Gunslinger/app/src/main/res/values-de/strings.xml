@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Ende des Weges</string>
+    <string name="main_activity_name">Ende des Weges</string>
+    <string name="text_dialog_window">Sind Sie sicher, dass Sie aussteigen wollen?</string>
+    <string name="dialog_yes_button">Ja</string>
+    <string name="dialog_no_button">Nein</string>
+    <string name="leverListHead">Wählen Sie ein Niveau</string>
+    <string name="play_button_head">Spielen</string>
+    <string name="exit_button_head">Ausgang</string>
+    <string name="head_dialog_death">Sie sind gestorben...erneut versuchen?</string>
+</resources>
