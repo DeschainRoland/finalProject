@@ -66,7 +66,6 @@ public class MainMenu extends Activity {
                         } else {
                             Intent intent = new Intent(MainMenu.this, LevelListActivity.class);
                             startActivity(intent);
-                            finish();
                             audioPlayer.stop();
                             break;
                         }

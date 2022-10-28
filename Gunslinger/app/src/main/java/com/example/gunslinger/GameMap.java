@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View.OnLongClickListener{
+    Global global;
     //Переменные для рисования
     float x1, y1, //текущее положение картинки
     // x2, y2, //смещение координат
@@ -39,7 +40,6 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
 
 
     public GameMap(Context context, int levelPath) {
-
         super(context);
         getHolder().addCallback(this);
         this.levelPath = levelPath;
@@ -76,7 +76,7 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
 
         }));
          dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.dialog_death);
+         dialog.setContentView(R.layout.dialog_death);
          restart = dialog.findViewById(R.id.dialog_window_death_yes);
          goMainM = dialog.findViewById(R.id.dialog_window_death_no);
 
@@ -144,7 +144,6 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
                 roland.currentImage = roland.imageMap.get("Dead");
                 roland.isDead = true;
                 roland.movingVelocity = 0;
-
             }
 
         }
@@ -152,12 +151,14 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
         for (Lever lever:listOfLevers) {
             lever.draw(canvas);
         }
+
         for (Key key:listOfKeys) {
             if (roland.isCollision(key.x,key.x+key.width,key.y+key.height))
                 key.hasTaken = true;
 
             key.draw(canvas);
         }
+
         for (Crate crate:listOfCrates){
             if (crate.isCollision(roland.x,roland.x+roland.width,roland.y+roland.height/2)){
                 roland.movingVelocity = crate.movingVelocity;
@@ -167,7 +168,6 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
             crate.draw(canvas);
         }
 
-
         for (Key k :listOfKeys) {
             if (!listOfKeys.isEmpty()){
             if  (k.hasTaken)
@@ -176,30 +176,41 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
             else gates.isOpened = false;
             gates.draw(canvas);
         }
-        if (!gates.isOpened&&Rect.intersects(roland.hitbox,gates.hitbox)){
+
+        if (!gates.isOpened && Rect.intersects(roland.hitbox, gates.hitbox)){
+            Log.d(VIEW_LOG_TAG, "!gates.isOpened");
             touchX = roland.x-6;
-            roland.targetX =  (int)touchX;
+            roland.targetX = (int)touchX;
             roland.moveX();
 
         }
 
         roland.draw(canvas);
 
-if (roland.isDead){
-    try {
-        Thread.sleep(1500);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-    listOfCrates.clear();
-    listOfKeys.clear();
-    listOfLevers.clear();
-    listOfSpikes.clear();
-    drawMap = new DrawMap(res,levelPath);
-    createObjects();
+        if (roland.isDead){
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.d(VIEW_LOG_TAG, "Dead");
+            listOfCrates.clear();
+            listOfKeys.clear();
+            listOfLevers.clear();
+            listOfSpikes.clear();
+            drawMap = new DrawMap(res,levelPath);
+            createObjects();
+        }
 
-}
-
+        if (gates.isOpened && Rect.intersects(roland.hitbox, gates.hitbox)){
+            Log.d(VIEW_LOG_TAG, "Near gates");
+            switch (global.getLevelNumber()){
+                case 1: drawMap = new DrawMap(res, R.raw.level_two);
+                break;
+                //...
+            }
+            global.setLevelNumber(global.getLevelNumber() + 1);
+        }
     }
 
     @Override
@@ -208,9 +219,11 @@ if (roland.isDead){
         drawThread.setRun(true);
         drawThread.start();
     }
+
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     }
+
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         boolean stop = true;

@@ -6,8 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class Gates extends GameObject {
+
     boolean isOpened = false;
     Rect emtyRect;
+
     public Gates(GameMap gameMap, Resources res, int x, int y) {
         super(gameMap, res, x, y);
         image = BitmapFactory.decodeResource(res,R.drawable.gates);
@@ -19,6 +21,7 @@ public class Gates extends GameObject {
 
     @Override
     public void draw(Canvas canvas) {
+        hitbox.set(x, y, width, height);
         if (!isOpened) canvas.drawBitmap(image,x,y,paint);
         else  canvas.drawRect(emtyRect,paint);
     }

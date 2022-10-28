@@ -27,8 +27,6 @@ public class SplashActivity extends AppCompatActivity {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         imageView = findViewById(R.id.imageSplash);
-        textView1 = findViewById(R.id.textView4);
-        textView2 = findViewById(R.id.textView5);
 
         Animation startAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         imageView.setAnimation(startAnimation);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.gunslinger">
+    package="com.example.gunslinger" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -12,8 +12,7 @@
         android:roundIcon="@drawable/face_of_game"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gunslinger"
-        tools:ignore="ExtraText">
-
+        tools:ignore="ExtraText" >
         <activity
             android:name=".Comics"
             android:exported="true"
@@ -21,26 +20,23 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
-
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:screenOrientation="landscape"/>
-
+            android:screenOrientation="landscape" />
         <activity
             android:name=".LevelListActivity"
             android:exported="true"
-            android:screenOrientation="landscape" />
-
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".MainMenu"
             android:exported="true"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

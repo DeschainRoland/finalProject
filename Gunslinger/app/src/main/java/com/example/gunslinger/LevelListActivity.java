@@ -15,6 +15,7 @@ public class LevelListActivity extends Activity {
 
     ImageButton btnToMainMenu, btnLevelFirst,btnLevelSecond;
     AudioPlayer audioPlayer;
+    Global global;
 
     int putPath;
     Intent toMMIntent;
@@ -32,34 +33,39 @@ public class LevelListActivity extends Activity {
         btnLevelSecond = findViewById(R.id.b_level_two);
         toMMIntent = new Intent(LevelListActivity.this, MainMenu.class);
         chooseLevelIntent = new Intent(LevelListActivity.this, MainActivity.class);
+
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 switch (view.getId()){
                     case R.id.buttonToMainMenu:
-                        startActivity(toMMIntent); audioPlayer.stop(); break;
+                        startActivity(toMMIntent);
+                        audioPlayer.stop();
+                        break;
+
                     case R.id.b_level_one:
+                        //global.setLevelNumber(1);
                         putPath = R.raw.level_one;
                         chooseLevelIntent.putExtra("LEVEL_NUM",putPath);
                         startActivity(chooseLevelIntent); //finish();
-                        audioPlayer.stop();break;
-                    case R.id.b_level_two: putPath = R.raw.level_two;
+                        audioPlayer.stop();
+                        break;
+
+                    case R.id.b_level_two:
+                        //global.setLevelNumber(2);
+                        putPath = R.raw.level_two;
                         chooseLevelIntent.putExtra("LEVEL_NUM",putPath);
                         startActivity(chooseLevelIntent); //finish();
                         audioPlayer.stop();
-                    break;
+                        break;
                 }
 
             }
 
         };
-
         btnLevelFirst.setOnClickListener(onClickListener);
         btnToMainMenu.setOnClickListener(onClickListener);
         btnLevelSecond.setOnClickListener(onClickListener);
-
 
         audioPlayer = new AudioPlayer(this, 1);
         audioPlayer.play();

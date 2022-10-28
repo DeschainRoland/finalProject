@@ -7,5 +7,6 @@
     <string name="leverListHead">Select level</string>
     <string name="play_button_head">Play</string>
     <string name="exit_button_head">Exit</string>
+    <string name="toast_name">Tap again to select a level.</string>
     <string name="head_dialog_death">You died...Continue?</string>
 </resources>

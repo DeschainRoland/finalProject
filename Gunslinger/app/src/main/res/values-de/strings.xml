@@ -7,5 +7,6 @@
     <string name="leverListHead">Wählen Sie ein Niveau</string>
     <string name="play_button_head">Spielen</string>
     <string name="exit_button_head">Ausgang</string>
+    <string name="toast_name">Tippen Sie erneut auf, um eine Ebene auszuwählen.</string>
     <string name="head_dialog_death">Sie sind gestorben...erneut versuchen?</string>
 </resources>

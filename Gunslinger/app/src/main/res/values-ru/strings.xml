@@ -7,5 +7,6 @@
     <string name="leverListHead">Выберите уровень</string>
     <string name="play_button_head">Играть</string>
     <string name="exit_button_head">Выход</string>
+    <string name="toast_name">Нажмите еще раз, чтобы выбрать уровень.</string>
     <string name="head_dialog_death">Вы умерли...Продолжить?</string>
 </resources>

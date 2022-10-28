@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 public class DrawThread extends Thread {
+
     GameMap gameMap;
     SurfaceHolder surfaceHolder;
     boolean isRun = false;

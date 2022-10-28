@@ -4,6 +4,7 @@ package com.example.gunslinger;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.view.Window;
@@ -20,6 +21,8 @@ public class MainActivity extends Activity {
     int recievePath;
     private long buttonPressedTime;
     private Toast toastToExit;
+    String toast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,8 @@ public class MainActivity extends Activity {
             startActivity(intent);
 
         } else {
-            toastToExit = Toast.makeText(getBaseContext(), "Нажмите еще раз, чтобы выбрать уровень.", Toast.LENGTH_SHORT);
+            toast = getResources().getString(R.string.toast_name);
+            toastToExit = Toast.makeText(getBaseContext(), toast, Toast.LENGTH_SHORT);
             toastToExit.show();
         }
         buttonPressedTime = System.currentTimeMillis();

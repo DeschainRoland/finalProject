@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DrawMap {
+
     Resources res;
     Bitmap innerBrick, upBrick, downBrick;
     String[][] mapArray;
@@ -31,12 +32,10 @@ public class DrawMap {
         this.res = res;
         this.path = path;
         innerBrick = BitmapFactory.decodeResource(res, R.drawable.floor_block_down);
-        upBrick = BitmapFactory.decodeResource(res, R.drawable.up_brick2_32);
+        upBrick = BitmapFactory.decodeResource(res, R.drawable.floor_block_up);
         downBrick = BitmapFactory.decodeResource(res, R.drawable.roof_block_up);
         textureHeight = innerBrick.getHeight();
         textureWidth = innerBrick.getWidth();
-
-
         openPath = res.openRawResource(path);
         isr = new InputStreamReader(openPath);
         br = new BufferedReader(isr);
@@ -50,14 +49,14 @@ public class DrawMap {
             generatedFirst = false;
         }
     }
+
     //рассчитывает длину и высоту массива перед выделением памяти
     private void checkLength() throws IOException {
-
         int rowCounter = 0;
         int columnCounter = 0;
         boolean hasTaken = false;
         while ((info = br.readLine()) != null) {
-//чтобы забрать кол-во колонок лишь один раз
+        //чтобы забрать кол-во колонок лишь один раз
             if (!hasTaken) {
                 columnCounter = info.length();
                 hasTaken = true;
@@ -83,6 +82,7 @@ public class DrawMap {
         }
         br.close();
     }
+
     public void getObjectSpawnCoords(){
         for (int y = 0; y < mapArray.length; y++) {
             for (int x = 0; x < mapArray[y].length; x++) {
@@ -102,15 +102,16 @@ public class DrawMap {
             }
         }
     }
+
     public void draw(Canvas canvas) {
-//рисуем задний фон
+        //рисуем задний фон
         canvas.drawBitmap(BitmapFactory.decodeResource(res,
                 R.drawable.level_bg),0,0,paint);
         //рисуем текстурки
         drawTextures(canvas);
     }
-    public void drawTextures(Canvas canvas) {
 
+    public void drawTextures(Canvas canvas) {
         for (int y = 0; y < mapArray.length; y++) {
             for (int x = 0; x < mapArray[y].length; x++) {
                 switch (mapArray[y][x]){

@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 public class Crate extends GameObject {
 
-
     public Crate(GameMap gameMap, Resources res,int x, int y) {
         super(gameMap,res,x,y);
         image = BitmapFactory.decodeResource(res, R.drawable.crate_32);
@@ -19,26 +18,20 @@ public class Crate extends GameObject {
 
     }
 
-
-
    @Override
    public void fall() {
        if (isFalling())
        y += fallingVelocity;
-
-
    }
+
     @Override
     public void moveX() {
         if (isCollision(gameMap.roland.x,gameMap.roland.x+width-16,gameMap.roland.y+height/2)){
-
             if (gameMap.roland.x<x)
             x+= movingVelocity;
             else
             x-= movingVelocity;
-
         }
-
     }
 
     @Override
