@@ -21,7 +21,7 @@ public class Gates extends GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        hitbox.set(x, y, width, height);
+        /*hitbox.set(x, y, width, height);*/
         if (!isOpened) canvas.drawBitmap(image,x,y,paint);
         else  canvas.drawRect(emtyRect,paint);
     }

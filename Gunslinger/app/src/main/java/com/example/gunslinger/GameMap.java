@@ -41,6 +41,7 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
 
     public GameMap(Context context, int levelPath) {
         super(context);
+        global = new Global();
         getHolder().addCallback(this);
         this.levelPath = levelPath;
         res = getResources();
@@ -75,11 +76,6 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
             }
 
         }));
-         dialog = new Dialog(getContext());
-         dialog.setContentView(R.layout.dialog_death);
-         restart = dialog.findViewById(R.id.dialog_window_death_yes);
-         goMainM = dialog.findViewById(R.id.dialog_window_death_no);
-
     }
     public void createObjects(){
         for (CoordClass coordItem: drawMap.coordList) {
@@ -178,6 +174,7 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
         }
 
         if (!gates.isOpened && Rect.intersects(roland.hitbox, gates.hitbox)){
+
             Log.d(VIEW_LOG_TAG, "!gates.isOpened");
             touchX = roland.x-6;
             roland.targetX = (int)touchX;
@@ -188,11 +185,7 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
         roland.draw(canvas);
 
         if (roland.isDead){
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             Log.d(VIEW_LOG_TAG, "Dead");
             listOfCrates.clear();
             listOfKeys.clear();
@@ -203,11 +196,16 @@ public class GameMap extends SurfaceView implements SurfaceHolder.Callback, View
         }
 
         if (gates.isOpened && Rect.intersects(roland.hitbox, gates.hitbox)){
-            Log.d(VIEW_LOG_TAG, "Near gates");
+            //Log.d(VIEW_LOG_TAG, "Near gates");
             switch (global.getLevelNumber()){
-                case 1: drawMap = new DrawMap(res, R.raw.level_two);
+                case 1:
+                    listOfCrates.clear();
+                    listOfKeys.clear();
+                    listOfLevers.clear();
+                    listOfSpikes.clear();
+                    drawMap = new DrawMap(res, R.raw.level_two);
+                    createObjects();
                 break;
-                //...
             }
             global.setLevelNumber(global.getLevelNumber() + 1);
         }

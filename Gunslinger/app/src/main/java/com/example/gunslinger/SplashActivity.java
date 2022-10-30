@@ -16,7 +16,6 @@ public class SplashActivity extends AppCompatActivity {
 
     ImageView imageView;
     Intent intent;
-    TextView textView1, textView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,6 @@ public class SplashActivity extends AppCompatActivity {
 
         Animation startAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         imageView.setAnimation(startAnimation);
-        textView1.setAnimation(startAnimation);
-        textView2.setAnimation(startAnimation);
 
         intent = new Intent(SplashActivity.this, MainMenu.class);
 

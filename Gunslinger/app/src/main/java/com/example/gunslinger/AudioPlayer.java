@@ -5,8 +5,6 @@ import android.media.MediaPlayer;
 
 public class AudioPlayer {
 
-    ////////Deadman = для выбора уровней, Searching the answer = для геймплея, The Creed = для менюшки
-
     private MediaPlayer mediaPlayer;
 
     public AudioPlayer(Context context, Integer integer){

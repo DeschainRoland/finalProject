@@ -37,21 +37,24 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@null"
-            android:src="@drawable/level_four"/>
+            android:src="@drawable/level_three"
+            android:id="@+id/b_level_three"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@null"
-            android:src="@drawable/level_five" />
+            android:src="@drawable/level_four"
+            android:id="@+id/b_level_four"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@null"
-            android:src="@drawable/level_six" />
+            android:src="@drawable/level_zero"
+            android:id="@+id/b_level_zero_two"/>
 
     </LinearLayout>
 
@@ -69,6 +72,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@null"
+            android:src="@drawable/level_zero"
+            android:id="@+id/b_level_zero"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@null"
             android:src="@drawable/level_one"
             android:id="@+id/b_level_one"/>
 
@@ -79,13 +90,6 @@
             android:background="@null"
             android:src="@drawable/level_two"
             android:id="@+id/b_level_two"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@null"
-            android:src="@drawable/level_three" />
         
     </LinearLayout>
 

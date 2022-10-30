@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 
-public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactory, GestureDetector.OnGestureListener {
+public class Comics_two extends AppCompatActivity implements ViewSwitcher.ViewFactory, GestureDetector.OnGestureListener {
 
     private ImageSwitcher mImageSwitcher;
     ImageButton button;
@@ -32,12 +32,12 @@ public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactor
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comics);
+        setContentView(R.layout.activity_comics_two);
 
-        mImageSwitcher = findViewById(R.id.imageSwitcher);
+        mImageSwitcher = findViewById(R.id.imageSwitcher_two);
         mImageSwitcher.setFactory(this);
 
-        button = findViewById(R.id.button);
+        button = findViewById(R.id.button_two);
 
         Animation inAnimation = new AlphaAnimation(0, 1);
         inAnimation.setDuration(2000);
@@ -57,13 +57,14 @@ public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactor
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Comics.this, LevelListActivity.class);
+                Intent intent = new Intent(Comics_two.this, LevelListActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
-    }
 
+
+    }
 
     public void setPositionNext() {
         position++;
@@ -77,22 +78,6 @@ public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactor
         if (position < 0) {
             position = 0;
         }
-    }
-
-    @Override
-    public View makeView() {
-        ImageView imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        imageView.setLayoutParams(new
-                ImageSwitcher.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        imageView.setBackgroundColor(0xFF000000);
-        return imageView;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return mGestureDetector.onTouchEvent(event);
     }
 
     @Override
@@ -121,13 +106,13 @@ public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactor
     }
 
     @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float v, float v1) {
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
         try {
-            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+            if (Math.abs(motionEvent.getY() - motionEvent1.getY()) > SWIPE_MAX_OFF_PATH)
                 return false;
             // справа налево
 
-            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+            if (motionEvent.getX() - motionEvent1.getX() > SWIPE_MIN_DISTANCE
                     && Math.abs(v) > SWIPE_THRESHOLD_VELOCITY) {
                 setPositionNext();
 
@@ -138,7 +123,7 @@ public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactor
 
                 mImageSwitcher.setImageResource(mImageIds[position]);
 
-            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+            } else if (motionEvent1.getX() - motionEvent.getX() > SWIPE_MIN_DISTANCE
                     && Math.abs(v1) > SWIPE_THRESHOLD_VELOCITY) {
                 // слева направо
                 setPositionPrev();
@@ -149,5 +134,16 @@ public class Comics extends AppCompatActivity implements ViewSwitcher.ViewFactor
             return true;
         }
         return true;
+    }
+
+    @Override
+    public View makeView() {
+        ImageView imageView = new ImageView(this);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView.setLayoutParams(new
+                ImageSwitcher.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        imageView.setBackgroundColor(0xFF000000);
+        return imageView;
     }
 }

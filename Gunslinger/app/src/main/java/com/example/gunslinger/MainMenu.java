@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -54,23 +55,29 @@ public class MainMenu extends Activity {
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.button_for_exit:
-                        dialogWindow.show(); break;
+                        dialogWindow.show();
+                        break;
+
                     case R.id.button_for_play:
                         if (!hasVisited) {
-                            Intent intent = new Intent(MainMenu.this, Comics.class);// выводим нужную активность
+                            Intent intent = new Intent(MainMenu.this, Comics.class);
                             startActivity(intent);
                             finish();
                             SharedPreferences.Editor e = sp.edit();
                             e.putBoolean("hasVisited", true);
-                            e.commit(); // не забудьте подтвердить изменения
+                            e.commit();
                         } else {
                             Intent intent = new Intent(MainMenu.this, LevelListActivity.class);
                             startActivity(intent);
+                            finish();
                             audioPlayer.stop();
                             break;
                         }
                     case R.id.dialog_window_yes_btn:
-                        finish(); break;
+                        finish();
+                        audioPlayer.stop();
+                        break;
+
                     case R.id.dialog_window_no_button:
                         dialogWindow.dismiss(); break;
                 }

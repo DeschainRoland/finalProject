@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
             toastToExit.cancel();
             Intent intent = new Intent(MainActivity.this, LevelListActivity.class);
             startActivity(intent);
-
+            finish();
         } else {
             toast = getResources().getString(R.string.toast_name);
             toastToExit = Toast.makeText(getBaseContext(), toast, Toast.LENGTH_SHORT);

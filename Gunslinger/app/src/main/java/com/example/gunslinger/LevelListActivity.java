@@ -4,7 +4,6 @@ package com.example.gunslinger;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,26 +12,30 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 public class LevelListActivity extends Activity {
 
-    ImageButton btnToMainMenu, btnLevelFirst,btnLevelSecond;
+    ImageButton btnToMainMenu, btnLevelFirst, btnLevelSecond, btnToComics;
     AudioPlayer audioPlayer;
     Global global;
 
     int putPath;
-    Intent toMMIntent;
-    Intent chooseLevelIntent;
+    Intent toMMIntent, chooseLevelIntent, toComicsIntent;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lever_list);
+        setContentView(R.layout.activity_level_list);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        btnToComics = findViewById(R.id.b_level_zero);
         btnToMainMenu = findViewById(R.id.buttonToMainMenu);
         btnLevelFirst = findViewById(R.id.b_level_one);
         btnLevelSecond = findViewById(R.id.b_level_two);
+
+        global = new Global();
+
         toMMIntent = new Intent(LevelListActivity.this, MainMenu.class);
         chooseLevelIntent = new Intent(LevelListActivity.this, MainActivity.class);
+        toComicsIntent = new Intent(LevelListActivity.this, Comics.class);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -43,16 +46,22 @@ public class LevelListActivity extends Activity {
                         audioPlayer.stop();
                         break;
 
+                    case R.id.b_level_zero:
+                        startActivity(toComicsIntent);
+                        finish();
+                        audioPlayer.stop();
+                        break;
+
                     case R.id.b_level_one:
-                        //global.setLevelNumber(1);
+                        global.setLevelNumber(1);
                         putPath = R.raw.level_one;
-                        chooseLevelIntent.putExtra("LEVEL_NUM",putPath);
+                        chooseLevelIntent.putExtra("LEVEL_NUM",putPath); //ща ошибка будет
                         startActivity(chooseLevelIntent); //finish();
                         audioPlayer.stop();
                         break;
 
                     case R.id.b_level_two:
-                        //global.setLevelNumber(2);
+                        global.setLevelNumber(2);
                         putPath = R.raw.level_two;
                         chooseLevelIntent.putExtra("LEVEL_NUM",putPath);
                         startActivity(chooseLevelIntent); //finish();
@@ -63,6 +72,8 @@ public class LevelListActivity extends Activity {
             }
 
         };
+
+        btnToComics.setOnClickListener(onClickListener);
         btnLevelFirst.setOnClickListener(onClickListener);
         btnToMainMenu.setOnClickListener(onClickListener);
         btnLevelSecond.setOnClickListener(onClickListener);
